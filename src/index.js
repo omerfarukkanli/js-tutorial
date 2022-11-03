@@ -4,17 +4,21 @@ const form = document.getElementById("employee-form");
 const nameInput = document.getElementById("name");
 const departmentInput = document.getElementById("department");
 const salaryInput = document.getElementById("salary");
-const emloyeeList = document.getElementById("employees");
+const employeeList = document.getElementById("employees");
 const updateEmployeeButton = document.getElementById("update");
 
 const request = new Request(" http://localhost:3000/employee");
 const ui = new UI();
 eventListeners();
-
+let updatestate = null;
+//listener ataması
 function eventListeners() {
   document.addEventListener("DOMContentLoaded", getAllEmployees);
   form.addEventListener("submit", addEmployee);
+  employeeList.addEventListener("click", updateOrDelete);
+  updateEmployeeButton.addEventListener("click", updateEmployee);
 }
+
 function getAllEmployees() {
   request
     .get()
@@ -48,6 +52,55 @@ function addEmployee(e) {
 
   ui.clearInputs();
   e.preventDefault();
+}
+
+function updateOrDelete(e) {
+  if (e.target.id === "delete-employee") {
+    deleteEmployee(e.target);
+  } else if (e.target.id === "update-employee") {
+    updateEmployeeCOntroller(e.target.parentElement.parentElement);
+  }
+}
+
+function deleteEmployee(targetEmployee) {
+  const id =
+    targetEmployee.parentElement.previousElementSibling.previousElementSibling
+      .textContent;
+  request
+    .delete(id)
+    .then((message) => {
+      ui.deleteEmployeeFromUI(targetEmployee.parentElement.parentElement);
+    })
+    .catch((err) => console.log(err));
+}
+
+function updateEmployeeCOntroller(targetEmployee) {
+  ui.toggleUpdateButton(targetEmployee);
+
+  if (updatestate === null) {
+    updatestate = {
+      updateId: targetEmployee.children[3].textContent,
+      updateParent: targetEmployee,
+    };
+  } else {
+    updatestate = null;
+  }
+}
+
+function updateEmployee() {
+  if (updatestate) {
+    const data = {
+      name: nameInput.value.trim(),
+      department: departmentInput.value.trim(),
+      salary: Number(salaryInput.value.trim()),
+    };
+    request
+      .put(updatestate.updateId, data)
+      .then((udpdatedEmployee) => {
+        ui.updateEmployeeToUI(udpdatedEmployee,updatestate.updateParent);
+      })
+      .catch((err) => console.log(err));
+  }
 }
 
 // request

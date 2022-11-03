@@ -23,7 +23,7 @@ export class Request {
     return responseData;
   }
 
-  async put(data, id) {
+  async put(id, data) {
     const response = await fetch(this.url + "/" + id, {
       method: "PUT",
       body: JSON.stringify(data),

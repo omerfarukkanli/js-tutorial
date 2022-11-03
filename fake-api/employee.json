@@ -1,58 +1,10 @@
 {
   "employee": [
     {
-      "name": "Beyce Kanlı ",
+      "name": "Mehmet Kanlı",
       "department": "Yönetim",
-      "salary": 8000,
-      "id": 1
-    },
-    {
-      "name": "Mehmet Kanlı ",
-      "department": "Pazarlama",
-      "salary": 5000,
-      "id": 3
-    },
-    {
-      "name": "Mehmet Kanlı ",
-      "department": "Pazarlama",
-      "salary": 5000,
-      "id": 4
-    },
-    {
-      "name": "Mehmet Kanlı ",
-      "department": "Pazarlama",
-      "salary": 5000,
-      "id": 5
-    },
-    {
-      "name": "ömer faruk kanlı",
-      "department": "asdasd",
-      "salary": "3000",
-      "id": 6
-    },
-    {
-      "name": "ENSAR DENİZ",
-      "department": "spor",
-      "salary": "5000",
-      "id": 7
-    },
-    {
-      "name": "MrOfk",
-      "department": "asdasd",
-      "salary": "5000",
-      "id": 8
-    },
-    {
-      "name": "salih kanlı",
-      "department": "öğrenci",
-      "salary": "1500",
-      "id": 9
-    },
-    {
-      "name": "mehmet kablan",
-      "department": "uluslararası ilişkiler",
-      "salary": 8000,
-      "id": 10
+      "salary": 100000000,
+      "id": 2
     }
   ]
 }
